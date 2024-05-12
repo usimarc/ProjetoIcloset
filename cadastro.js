@@ -5,35 +5,6 @@ const email = document.getElementById('email');
 const password = document.getElementById('password');
 const botao = document.getElementById('botao');
 
-/* Criando banco de dados inicial*/
-const BancoDados =
-{
-users: [
-{
-    "id":1, 
-    "nome": "adm",
-    "email": "adm@adm.com",
-    "senha": "123",
-},
-
-{
-    "id":2, 
-    "nome": "adm2",
-    "email": "adm2@adm.com",
-    "senha": "123",
-
-}
-]
-}
-
-// atualizando banco de dados com local storage caso haja dados no localStorege
-const BancoVeioDados = localStorage.getItem('BancoDados');
-const bancoNovo = JSON.parse(BancoVeioDados);
-if (bancoNovo){
-    Object.assign(BancoDados, bancoNovo); 
-
-}
-
 form.addEventListener('submit', e => {
     e.preventDefault();
 
@@ -90,25 +61,41 @@ const validateInputs = () => {
         setSuccess(password);
     }
 
-    };
+};
 
 /*Cadastrando usuário*/
-botao.addEventListener('click', () => {
-    
-    console.log('Cliquei');
+botao.addEventListener('click', async (e) => {
+    e.preventDefault();
+    console.log('Evento de clique disparado');
 
     if(username.value && email.value && password.value){
-    BancoDados.users[BancoDados.users.length] =
-    
-        {
-            "id":BancoDados.users.length + 1,
-            "nome": username.value,
+        console.log('Todos os campos estão preenchidos');
+        const user = {
+            "id": Date.now(),
+            "name": username.value,
             "email": email.value,
-            "senha": password.value,
+            "password": password.value,
         }
-        alert('Usuário cadastrado com sucesso.')
-        window.location.href = 'index.html';
-    };
-    //salva os dados no LocalStorage
-    localStorage.setItem('BancoDados', JSON.stringify (BancoDados));
-} ) ;
+        console.log('Objeto user criado:', user);
+        try {
+            const response = await fetch('http://localhost:3000/createUser', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(user),
+            });
+            if (response.ok) {
+                console.log('Usuário cadastrado com sucesso.')
+                alert('Usuário cadastrado com sucesso.')
+                window.location.href = 'index.html';
+            } else {
+                console.log('Erro ao cadastrar usuário.');
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    } else {
+        console.log('Um ou mais campos estão vazios');
+    }
+});

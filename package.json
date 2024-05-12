@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "http-server . -p 8080",
+    "server": "node server.js",
+    "dev": "concurrently \"npm run start\" \"npm run server\""
   },
   "repository": {
     "type": "git",
@@ -18,7 +21,13 @@
   },
   "homepage": "https://github.com/usimarc/ProjetoIcloset#readme",
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "jest": "^29.7.0",
     "puppeteer": "^22.6.5"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.6.1"
   }
 }
