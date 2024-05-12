@@ -1,6 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
 
-const url = 'mongodb://localhost:27017/icloset';
+const url = 'mongodb+srv://icloset:dlrPZzIWrhaSWXYr@icloset.84prs7w.mongodb.net/?retryWrites=true&w=majority&appName=ICloset';
 
 const dbName = 'icloset';
 
