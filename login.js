@@ -5,7 +5,7 @@ botao.addEventListener('click', async (e) => {
         password: password.value,
     };
     try {
-        const response = await fetch('http://localhost:3000/login', {
+        const response = await fetch('https://icloset-api-production.up.railway.app/usuarios/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

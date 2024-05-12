@@ -78,7 +78,7 @@ botao.addEventListener('click', async (e) => {
         }
         console.log('Objeto user criado:', user);
         try {
-            const response = await fetch('http://localhost:3000/createUser', {
+            const response = await fetch('https://icloset-api-production.up.railway.app/usuarios/save', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
