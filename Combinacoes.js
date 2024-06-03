@@ -94,7 +94,7 @@ saveCombinations(userCombinations).then(r => console.log(r));
 
 async function saveCombinations(userCombinations) {
   try {
-    const response = await fetch('http://localhost:8081/imagemUsuario', {
+    const response = await fetch('https://icloset-api-production.up.railway.app/imagemUsuario', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

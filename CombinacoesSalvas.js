@@ -97,17 +97,17 @@ async function buscarCombinacoes() {
   const userEmail = localStorage.getItem('email');
   console.log(`Fetching image URLs for user: ${userEmail}`); // Log the userEmail
   try {
-    const response = await fetch(`http://localhost:8081/imagemUsuario/${userEmail}`, {
+    const response = await fetch(`https://icloset-api-production.up.railway.app/${userEmail}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
     });
     if (response.ok) {
-      console.log('Combinações salvas com sucesso.');
+      console.log('Combinações recuperadas com sucesso.');
       return await response.json();
     } else {
-      console.log('Erro ao salvar combinações.');
+      console.log('Erro ao recuperar combinações.');
     }
   } catch (err) {
     console.error(err);
