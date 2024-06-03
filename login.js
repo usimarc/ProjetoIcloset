@@ -14,6 +14,7 @@ botao.addEventListener('click', async (e) => {
         });
         if (response.ok) {
             console.log('Usuário autenticado com sucesso.')
+            localStorage.setItem('email', user.email);
             window.location.href = 'TelaFotos.html';
         } else {
             console.log('Email ou senha incorretos.');

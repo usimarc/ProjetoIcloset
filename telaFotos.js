@@ -1,15 +1,21 @@
 // Cria um objeto vazio para armazenar os endereços das imagens
 const imageUrls = {};
 
+const userEmail = localStorage.getItem('email');
+
+document.getElementById('combinationsButton').addEventListener('click', function() {
+  window.location.href = 'CombinacoesSalvas.html';
+});
+
 function loadPreviewImage(input, preview, position) {
   const fotoAntesId = `fotoAntes${position.toString().padStart(2, '0')}`;
   input.addEventListener('change', (event) => {
     const imageLoading = event.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(imageLoading);
-    
+
     reader.addEventListener('load', (event) => {
-      
+
       const thisReader = event.target;
       const img = document.createElement('img');
       img.src = thisReader.result;
@@ -25,7 +31,7 @@ function loadPreviewImage(input, preview, position) {
 
       // Adiciona o endereço da imagem no objeto imageUrls
       imageUrls[`image${position}`] = thisReader.result;
-      
+
       // Salva o objeto imageUrls no localStorage
       localStorage.setItem('imageUrls', JSON.stringify(imageUrls));
 
@@ -44,8 +50,8 @@ function loadPreviewImage(input, preview, position) {
     // const p = document.getElementById('exibeJson');
     // p.innerHTML = content;
 
-      
-      
+
+
     });
   });
 }
@@ -54,9 +60,9 @@ for (let i = 1; i <= 9; i++) {
   const input = document.getElementById(`inputPicture0${i}`);
   const preview = document.getElementById(`span0${i}`);
   loadPreviewImage(input, preview, i);
-  
-  
-} 
+
+
+}
 
 const button = document.getElementById("paiBotao");
 console.log(button);

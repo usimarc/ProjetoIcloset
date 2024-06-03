@@ -1,4 +1,6 @@
 const savedImageUrls = JSON.parse(localStorage.getItem('imageUrls'));
+console.log(savedImageUrls);
+const userEmail = localStorage.getItem('email');
 const camisas = [
   new Image(),
   new Image(),
@@ -49,7 +51,7 @@ const linha3 = document.getElementById("linha3");
 for (let i = 0; i < 3; i++) {
   const divCombination = document.createElement("div");
   divCombination.classList.add("combination");
-  
+
   const combination = combinations.slice(i * 9, (i + 1) * 9);
 
   for (const item of combination) {
@@ -80,6 +82,32 @@ for (let i = 0; i < 3; i++) {
     linha2.appendChild(divCombination);
   } else if (i === 2) {
     linha3.appendChild(divCombination);
+  }
+}
+
+const userCombinations = {
+  email: userEmail,
+  imagem: savedImageUrls
+};
+
+saveCombinations(userCombinations).then(r => console.log(r));
+
+async function saveCombinations(userCombinations) {
+  try {
+    const response = await fetch('http://localhost:8081/imagemUsuario', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userCombinations),
+    });
+    if (response.ok) {
+      console.log('Combinações salvas com sucesso.')
+    } else {
+      console.log('Erro ao salvar combinações.');
+    }
+  } catch (err) {
+    console.error(err);
   }
 }
 
