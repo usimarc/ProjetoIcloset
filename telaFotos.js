@@ -23,7 +23,6 @@ function loadPreviewImage(input, preview, position) {
         fotoAntesElement.parentNode.removeChild(fotoAntesElement);
       }
 
-
       // Adiciona o endereço da imagem no objeto imageUrls
       imageUrls[`image${position}`] = thisReader.result;
       
