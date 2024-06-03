@@ -97,7 +97,7 @@ async function buscarCombinacoes() {
   const userEmail = localStorage.getItem('email');
   console.log(`Fetching image URLs for user: ${userEmail}`); // Log the userEmail
   try {
-    const response = await fetch(`https://icloset-api-production.up.railway.app/${userEmail}`, {
+    const response = await fetch(`https://icloset-api-production.up.railway.app/imagemUsuario/${userEmail}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
